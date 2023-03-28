@@ -30,16 +30,16 @@ public class mainController {
         return isDarkTheme;
     }
 
-    public void addAllAntenna(ArrayList<Antenne> antennes, AntenneAdapter adapter){
-        Log.d("test","ici");
+    public void addAllAntenna(ArrayList<Antenne> antennes, AntenneAdapter adapter) {
         Call<AntenneResponse> call = apiManager.getAntenneService().getRecords();
         call.enqueue(new Callback<AntenneResponse>() {
             @Override
             public void onResponse(Call<AntenneResponse> call, Response<AntenneResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
+                    antennes.clear();
                     AntenneResponse resp = response.body();
                     antennes.addAll(Arrays.asList(resp.getRecords()));
-                    Log.d("test","Success");
+                    Log.d("test", "Success");
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -50,11 +50,88 @@ public class mainController {
             }
         });
 
-
-
-
     }
 
+    public void addOrangeAntenna(ArrayList<Antenne> antennes, AntenneAdapter adapter) {
+        Call<AntenneResponse> call = apiManager.getAntenneService().getOrangeRecords();
+        call.enqueue(new Callback<AntenneResponse>() {
+            @Override
+            public void onResponse(Call<AntenneResponse> call, Response<AntenneResponse> response) {
+                if (response.isSuccessful()) {
+                    antennes.clear();
+                    AntenneResponse resp = response.body();
+                    antennes.addAll(Arrays.asList(resp.getRecords()));
+                    Log.d("test", "Success");
+                    adapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<AntenneResponse> call, Throwable t) {
+                // do something on failure
+            }
+        });
+    }
+    public void addFreeAntenna(ArrayList<Antenne> antennes, AntenneAdapter adapter) {
+        Call<AntenneResponse> call = apiManager.getAntenneService().getFreeRecords();
+        call.enqueue(new Callback<AntenneResponse>() {
+            @Override
+            public void onResponse(Call<AntenneResponse> call, Response<AntenneResponse> response) {
+                if (response.isSuccessful()) {
+                    antennes.clear();
+                    AntenneResponse resp = response.body();
+                    antennes.addAll(Arrays.asList(resp.getRecords()));
+                    Log.d("test", "Success");
+                    adapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<AntenneResponse> call, Throwable t) {
+                // do something on failure
+            }
+        });
+    }
+
+    public void addBouyguesAntenna(ArrayList<Antenne> antennes, AntenneAdapter adapter) {
+        Call<AntenneResponse> call = apiManager.getAntenneService().getBouyguesRecords();
+        call.enqueue(new Callback<AntenneResponse>() {
+            @Override
+            public void onResponse(Call<AntenneResponse> call, Response<AntenneResponse> response) {
+                if (response.isSuccessful()) {
+                    antennes.clear();
+                    AntenneResponse resp = response.body();
+                    antennes.addAll(Arrays.asList(resp.getRecords()));
+                    Log.d("test", "Success");
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AntenneResponse> call, Throwable t) {
+                // do something on failure
+            }
+        });
+    }
+
+    public void addSFRAntenna(ArrayList<Antenne> antennes, AntenneAdapter adapter) {
+        Call<AntenneResponse> call = apiManager.getAntenneService().getSFRRecords();
+        call.enqueue(new Callback<AntenneResponse>() {
+            @Override
+            public void onResponse(Call<AntenneResponse> call, Response<AntenneResponse> response) {
+                if (response.isSuccessful()) {
+                    antennes.clear();
+                    AntenneResponse resp = response.body();
+                    antennes.addAll(Arrays.asList(resp.getRecords()));
+                    Log.d("test", "Success");
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AntenneResponse> call, Throwable t) {
+                // do something on failure
+            }
+        });
+    }
 }
