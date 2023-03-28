@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string-array name="OpArray">
+        <item>Tous</item>
+        <item>Orange</item>
+        <item>SFR</item>
+        <item>Bouygues Telecom</item>
+        <item>Free mobile</item>
+    </string-array>
+</resources>

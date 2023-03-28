@@ -16,13 +16,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.tp_6.manager.mainController;
 import com.example.tp_6.model.Antenne;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         if (mainController.isDarkTheme()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
+        createListOperator();
     }
 
     @Override
@@ -161,5 +165,79 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void createListOperator() {
+        Spinner spinner = findViewById(R.id.spinnerMain);
+        if (spinner != null) {
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    R.array.OpArray,
+                    android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+        } else {
+            Log.e("createListOperator", "Spinner is null");
+        }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch ((int) id){
+                    case 0 :
+                        if (isNetworkAvailable()){
+                            mainController.addAllAntenna(antennes,adapter);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Aucune connexion internet. Impossible de charger les informations",Toast.LENGTH_LONG).show();
+
+                        }
+                        break;
+                    case 1:
+                        if (isNetworkAvailable()){
+                            mainController.addOrangeAntenna(antennes,adapter);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Aucune connexion internet. Impossible de charger les informations",Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    case 2:
+                        if (isNetworkAvailable()){
+                            mainController.addSFRAntenna(antennes,adapter);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Aucune connexion internet. Impossible de charger les informations",Toast.LENGTH_LONG).show();
+                        }
+                        break;
+
+                    case 3:
+                        if (isNetworkAvailable()){
+                            mainController.addBouyguesAntenna(antennes,adapter);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Aucune connexion internet. Impossible de charger les informations",Toast.LENGTH_LONG).show();
+                        }
+                        break;
+
+                    case 4:
+                        if (isNetworkAvailable()){
+                            mainController.addFreeAntenna(antennes,adapter);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Aucune connexion internet. Impossible de charger les informations",Toast.LENGTH_LONG).show();
+                        }
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    void showToast(CharSequence msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
 
 }
