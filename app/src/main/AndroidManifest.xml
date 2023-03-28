@@ -30,7 +30,12 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -47,12 +52,7 @@
             android:theme="@style/Theme.TP_6.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
     </application>
 
