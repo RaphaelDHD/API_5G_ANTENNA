@@ -10,8 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class DetailedActivity extends AppCompatActivity {
+
+    private ArrayList<Antenne> favoris = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +23,7 @@ public class DetailedActivity extends AppCompatActivity {
         setContentView(R.layout.antenne_detailed);
         Intent intentMain = getIntent();
         Antenne antenne = (Antenne) intentMain.getParcelableExtra("antenne");
-
+        favoris = intentMain.getParcelableArrayListExtra("favoris");
         TextView textView = findViewById(R.id.textViewOperateurDetailed); //nom operateur
         textView.setText(antenne.getFields().getOp_name());
         textView = findViewById(R.id.textViewIdDetailed); //id

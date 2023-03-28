@@ -31,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private com.example.tp_6.manager.mainController mainController = new mainController();
 
     private ArrayList<Antenne> antennes = new ArrayList<>();
+    private ArrayList<Antenne> favoris = new ArrayList<>();
     private AntenneAdapter adapter;
     private boolean loadAlreadyDone = false;
     private boolean firstTestInternetisAvailable = false;
     private final int SETTINGS_REQUEST_CODE = 2;
+    private final int DETAILED_REQUEST_CODE = 3;
+    private final int DETAILED_RESULT_CODE = 350;
     private final int SETTINGS_RESULT_CODE = 250;
 
 
@@ -85,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent myIntent = new Intent(MainActivity.this,DetailedActivity.class);
                 myIntent.putExtra("antenne",antennes.get(position));
-                startActivity(myIntent);
+                myIntent.putExtra("favoris",favoris);
+                startActivityForResult(myIntent,DETAILED_REQUEST_CODE);
             }
         });
 
@@ -143,15 +147,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data == null){
-            Log.e("test","je suis nul");
-        }
         if(requestCode==SETTINGS_REQUEST_CODE && data != null)
         {
             if (resultCode == SETTINGS_RESULT_CODE) {
-                Log.e("test","Juste la enculer");
                 boolean message = data.getBooleanExtra("isDarkTheme", false);
                 mainController.setDarkTheme(message);
+            }
+        }
+        if(requestCode==DETAILED_REQUEST_CODE && data != null)
+        {
+            if (resultCode == DETAILED_RESULT_CODE) {
+                Log.d("test","retour de result");
             }
         }
     }
