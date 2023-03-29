@@ -224,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Aucune connexion internet. Impossible de charger les informations",Toast.LENGTH_LONG).show();
                         }
                         break;
+                    case 5:
+                        mainController.showFavs(antennes,favoris,adapter);
 
                 }
             }

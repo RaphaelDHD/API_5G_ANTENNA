@@ -6,6 +6,7 @@ import com.example.tp_6.model.Antenne;
 import com.example.tp_6.AntenneAdapter;
 import com.example.tp_6.AntenneResponse;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -134,4 +135,11 @@ public class mainController {
             }
         });
     }
+    public void showFavs(ArrayList<Antenne> antennes, ArrayList<Antenne> favs , AntenneAdapter adapter){
+        antennes.clear();
+        antennes.addAll(favs);
+        adapter.notifyDataSetChanged();
+    }
+
+
 }
