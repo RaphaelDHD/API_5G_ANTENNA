@@ -96,6 +96,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(myIntent,DETAILED_REQUEST_CODE);
             }
         });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (antennes.size() != favoris.size() || !antennes.containsAll(favoris)) {
+                    Antenne antenne = antennes.get(position);
+                    favoris.add(antenne);
+                    Toast.makeText(getApplicationContext(),antenne.getFields().getOp_name() + " " + antenne.getFields().getOp_site_id()
+                            + " a été ajouté aux favoris !",Toast.LENGTH_LONG).show();
+
+                }
+                return false;
+            }
+        });
 
     }
 
