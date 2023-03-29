@@ -18,6 +18,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.tp_6.databinding.ActivityMapsBinding;
@@ -63,9 +65,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Antenne antenne : antennes) {
             LatLng position = new LatLng(antenne.getFields().getGeo_point_2d().get(0), antenne.getFields().getGeo_point_2d().get(1));
-            ClusterItemClass item = new ClusterItemClass(position.latitude, position.longitude, antenne.getFields().getOp_name() + ' ' + antenne.getFields().getOp_code(), null);
+            ClusterItemClass item = new ClusterItemClass(position.latitude, position.longitude, antenne.getFields().getOp_name() + ' ' + antenne.getFields().getOp_site_id(), null);
+            MarkerOptions markerOptions = new MarkerOptions().position(position).title(antenne.getFields().getOp_name() + ' ' + antenne.getFields().getOp_site_id());
+
+            switch (antenne.getFields().getOp_name()) {
+                case "Orange":
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                    break;
+                case "Bouygues Telecom":
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                    break;
+                case "Société française du radiotéléphone":
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    break;
+                case "Free mobile":
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    break;
+                default:
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                    break;
+            }
+
             clusterManager.addItem(item);
+            mMap.addMarker(markerOptions);
         }
+
+
 
         mMap.setOnCameraIdleListener(clusterManager);
         mMap.setOnMarkerClickListener(clusterManager);
@@ -88,9 +113,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onMyLocationChange(Location location) {
                     // Récupérer la position actuelle de l'utilisateur
                     LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
-                    // Ajouter un marqueur à la position de l'utilisateur
-                    mMap.addMarker(new MarkerOptions().position(myLocation).title("Ma position"));
 
                     // Zoomer sur la position de l'utilisateur
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 10));
