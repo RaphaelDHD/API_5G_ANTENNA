@@ -1,4 +1,4 @@
-package com.example.tp_6;
+package com.example.tp_6.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.example.tp_6.R;
 
 public class SettingsActivity extends AppCompatActivity {
     boolean isDarkTheme;

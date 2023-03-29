@@ -1,4 +1,4 @@
-package com.example.tp_6;
+package com.example.tp_6.activity;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -12,6 +12,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.tp_6.MyClusterRenderer;
+import com.example.tp_6.R;
 import com.example.tp_6.model.Antenne;
 import com.example.tp_6.model.ClusterItemClass;
 import com.google.android.gms.maps.CameraUpdateFactory;

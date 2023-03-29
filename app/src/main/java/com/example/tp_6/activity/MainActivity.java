@@ -1,4 +1,4 @@
-package com.example.tp_6;
+package com.example.tp_6.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +21,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.tp_6.AntenneAdapter;
+import com.example.tp_6.R;
 import com.example.tp_6.manager.mainController;
 import com.example.tp_6.model.Antenne;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent myIntent = new Intent(MainActivity.this,DetailedActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, DetailedActivity.class);
                 myIntent.putExtra("antenne",antennes.get(position));
                 myIntent.putExtra("favoris",favoris);
                 startActivityForResult(myIntent,DETAILED_REQUEST_CODE);
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickMap(View view){
-        Intent myIntent = new Intent(MainActivity.this,MapsActivity.class);
+        Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
         myIntent.putExtra("antennes",antennes);
         startActivity(myIntent);
     }
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void onClickSettings(View view){
-        Intent myIntent = new Intent(MainActivity.this,SettingsActivity.class);
+        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
         myIntent.putExtra("isDarkTheme",mainController.isDarkTheme());
         startActivityForResult(myIntent,SETTINGS_REQUEST_CODE);
     }

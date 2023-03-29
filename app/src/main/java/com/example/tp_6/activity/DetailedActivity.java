@@ -1,8 +1,9 @@
-package com.example.tp_6;
+package com.example.tp_6.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.tp_6.R;
 import com.example.tp_6.model.Antenne;
 
 import androidx.appcompat.app.AppCompatActivity;

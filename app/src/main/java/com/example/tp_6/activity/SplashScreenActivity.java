@@ -1,4 +1,4 @@
-package com.example.tp_6;
+package com.example.tp_6.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

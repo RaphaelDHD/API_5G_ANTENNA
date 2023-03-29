@@ -1,6 +1,6 @@
 package com.example.tp_6.service;
 
-import com.example.tp_6.AntenneResponse;
+import com.example.tp_6.manager.AntenneResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
