@@ -67,8 +67,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Antenne antenne : antennes) {
             LatLng position = new LatLng(antenne.getFields().getGeo_point_2d().get(0), antenne.getFields().getGeo_point_2d().get(1));
-            ClusterItemClass item = new ClusterItemClass(position.latitude, position.longitude, antenne.getFields().getOp_name() + ' ' + antenne.getFields().getOp_site_id(), null);
             MarkerOptions markerOptions = new MarkerOptions().position(position).title(antenne.getFields().getOp_name() + ' ' + antenne.getFields().getOp_site_id());
+            ClusterItemClass item = new ClusterItemClass(position.latitude, position.longitude, antenne.getFields().getOp_name() + ' ' + antenne.getFields().getOp_site_id(), null, markerOptions);
 
             switch (antenne.getFields().getOp_name()) {
                 case "Orange":
@@ -89,17 +89,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             clusterManager.addItem(item);
-            mMap.addMarker(markerOptions);
         }
-
 
 
         mMap.setOnCameraIdleListener(clusterManager);
         mMap.setOnMarkerClickListener(clusterManager);
 
-        /*LatLng paris = new LatLng(48.8566, 2.3522); // coordonnées de Paris
-        float zoomLevel = 10; // zoom de départ
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(paris, zoomLevel)); */
 
         MyClusterRenderer renderer = new MyClusterRenderer(this, mMap, clusterManager);
         clusterManager.setRenderer(renderer);

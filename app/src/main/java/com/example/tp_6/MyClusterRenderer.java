@@ -15,8 +15,12 @@ public class MyClusterRenderer extends DefaultClusterRenderer<ClusterItemClass> 
     }
 
     @Override
-    protected void onBeforeClusterRendered(Cluster<ClusterItemClass> clusterItem, MarkerOptions markerOptions) {
-        super.onBeforeClusterRendered(clusterItem, markerOptions);
-        markerOptions.title(clusterItem.getSize() + " items");
+    protected void onBeforeClusterItemRendered(ClusterItemClass item, MarkerOptions markerOptions) {
+        super.onBeforeClusterItemRendered(item, markerOptions);
+        MarkerOptions itemMarkerOptions = item.getMarkerOptions();
+        if (itemMarkerOptions != null) {
+            markerOptions.icon(itemMarkerOptions.getIcon());
+        }
     }
 }
+

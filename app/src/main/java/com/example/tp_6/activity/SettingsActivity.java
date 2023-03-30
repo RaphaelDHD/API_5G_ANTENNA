@@ -55,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putInt("Theme", 0);
             editor.apply();
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            isDarkTheme = !isDarkTheme;
         } else {
             Log.e("test", "faux");
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
@@ -62,6 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putInt("Theme", 100);
             editor.apply();
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            isDarkTheme = !isDarkTheme;
         }
         recreate();
     }
