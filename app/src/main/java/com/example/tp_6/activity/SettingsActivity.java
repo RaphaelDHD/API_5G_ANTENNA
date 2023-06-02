@@ -29,8 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
         Log.e("test", "redefine");
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        int highScore = sharedPref.getInt("Theme", 100);
-        if (highScore == 100){
+        int highScore = sharedPref.getInt("Theme", AppCompatDelegate.getDefaultNightMode());
+        if (highScore == AppCompatDelegate.MODE_NIGHT_YES){
             isDarkTheme = true;
         }
         else {
@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
             Log.e("test", "vrai");
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt("Theme", 0);
+            editor.putInt("Theme", AppCompatDelegate.MODE_NIGHT_NO);
             editor.apply();
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             isDarkTheme = !isDarkTheme;
@@ -60,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
             Log.e("test", "faux");
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt("Theme", 100);
+            editor.putInt("Theme", AppCompatDelegate.MODE_NIGHT_YES);
             editor.apply();
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             isDarkTheme = !isDarkTheme;

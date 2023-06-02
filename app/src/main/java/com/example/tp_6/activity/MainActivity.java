@@ -131,9 +131,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onAvailable( Network network) {
             super.onAvailable(network);
-            Log.d("test","onAvailable");
             if (!loadAlreadyDone){
-                mainController.addAllAntenna(antennes,adapter);
+                Spinner spinner = findViewById(R.id.spinnerMain);
+                int selectedSpinner = spinner.getSelectedItemPosition();
+                switch (selectedSpinner){
+                    case 0 :
+                        mainController.addAllAntenna(antennes,adapter);
+                        break;
+                    case 1 :
+                        mainController.addOrangeAntenna(antennes, adapter);
+                        break;
+                    case 2 :
+                        mainController.addSFRAntenna(antennes,adapter);
+                        break;
+                    case 3 :
+                        mainController.addBouyguesAntenna(antennes,adapter);
+                        break;
+                    case 4 :
+                        mainController.addFreeAntenna(antennes,adapter);
+                        break;
+                    case 5 :
+                        mainController.showFavs(antennes,favoris,adapter);
+                        break;
+                }
             }
             if (firstTestInternetisAvailable){
                 Toast.makeText(getApplicationContext(),"De nouveau connecter a internet",Toast.LENGTH_LONG).show();
